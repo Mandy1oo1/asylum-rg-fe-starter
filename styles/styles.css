@@ -1,0 +1,96 @@
+/* 
+This CSS file is a work in progress to import all of the CSS fonts.
+We will be using less as a preprocessor, but when using it in combination
+with CSS files, I have not had much luck rendering the fonts below.
+
+To use these fonts, all you need to do is reference the desired font family
+below as a CSS value. The example below illustrates this by changing the font
+of paragraph tags within the desired file:
+
+p {
+  font-family: 'AcuminProItalic';
+}
+*/
+
+/* Font imports for Acumin Pro Italic */
+@font-face {
+    font-family: 'AcuminProItalic';
+    src: url('./assets/Fonts/Acumin_Pro_Italic/Acumin_Pro_Italic.otf') format('embedded-opentype'),
+         url('./assets/Fonts/Acumin_Pro_Italic/Acumin_Pro_Italic.woff2') format('woff2'),
+         url('./assets/Fonts/Acumin_Pro_Italic/Acumin_Pro_Italic.woff') format('woff'),
+         url('./assets/Fonts/Acumin_Pro_Italic/Acumin_Pro_Italic.ttf') format('truetype');
+}
+
+/* Font imports for Acumin Pro Medium */
+@font-face {
+    font-family: 'AcuminProMedium';
+    src: url('./assets/Fonts/Acumin_Pro_Medium/Acumin_Pro_Medium.otf') format('embedded-opentype'),
+         url('./assets/Fonts/Acumin_Pro_Medium/Acumin_Pro_Medium.woff2') format('woff2'),
+         url('./assets/Fonts/Acumin_Pro_Medium/Acumin_Pro_Medium.woff') format('woff'),
+         url('./assets/Fonts/Acumin_Pro_Medium/Acumin_Pro_Medium.ttf') format('truetype');
+}
+
+/* Font imports for Acumin Pro Medium Italic */
+@font-face {
+    font-family: 'AcuminProMediumItalic';
+    src: url('./assets/Fonts/Acumin_Pro_Medium_Italic/Acumin_Pro_Medium_Italic.otf') format('embedded-opentype'),
+         url('./assets/Fonts/Acumin_Pro_Medium_Italic/Acumin_Pro_Medium_Italic.woff2') format('woff2'),
+         url('./assets/Fonts/Acumin_Pro_Medium_Italic/Acumin_Pro_Medium_Italic.woff') format('woff'),
+         url('./assets/Fonts/Acumin_Pro_Medium_Italic/Acumin_Pro_Medium_Italic.ttf') format('truetype');
+}
+
+/* Font imports for Acumin Pro Regular */
+@font-face {
+    font-family: 'AcuminProRegular';
+    src: url('./assets/Fonts/Acumin_Pro_Regular/Acumin_Pro_Regular.otf') format('embedded-opentype'),
+         url('./assets/Fonts/Acumin_Pro_Regular/Acumin_Pro_Regular.woff2') format('woff2'),
+         url('./assets/Fonts/Acumin_Pro_Regular/Acumin_Pro_Regular.woff') format('woff'),
+         url('./assets/Fonts/Acumin_Pro_Regular/Acumin_Pro_Regular.ttf') format('truetype');
+}
+
+/* Font imports for Beatrice Regular */
+@font-face {
+    font-family: 'BeatriceRegular';
+    src: url('./assets/Fonts/Beatrice_Regular/Beatrice_Regular.otf') format('embedded-opentype'),
+         url('./assets/Fonts/Beatrice_Regular/Beatrice_Regular.woff2') format('woff2'),
+         url('./assets/Fonts/Beatrice_Regular/Beatrice_Regular.woff') format('woff'),
+         url('./assets/Fonts/Beatrice_Regular/Beatrice_Regular.ttf') format('truetype');
+}
+
+/* Font imports for Moneta Bold */
+@font-face {
+    font-family: 'MonetaBold';
+    src: url('./assets/Fonts/Moneta_Bold/Moneta_Bold.otf') format('embedded-opentype'),
+         url('./assets/Fonts/Moneta_Bold/Moneta_Bold.woff2') format('woff2'),
+         url('./assets/Fonts/Moneta_Bold/Moneta_Bold.woff') format('woff'),
+         url('./assets/Fonts/Moneta_Bold/Moneta_Bold.ttf') format('truetype');
+}
+
+/* This is where we define the CSS fonts as global variables to be referenced later */
+:root {
+    --primary-color-white: #FFFFFF;
+    --primary-color-champagne: #F7E4Ca;
+    --primary-color-old-burgundy: #3E2B2F;
+    --primary-color-coral: #FD8960;
+    --primary-color-tawny-birch: #BB8673;
+
+    --secondary-color-timberwolf: #D6D1CA;
+    --secondary-color-blast-off-bronze: #9D6852;
+    --secondary-color-nickel: #707070;
+    --secondary-color-manatee: #8D8D99;
+    --secondary-color-dark-slate-gray: #404C4A;
+    --secondary-color-khaki: #C2BCA0;
+
+    --font-acumin-pro-italic: 'AcuminProItalic';
+    --font-acumin-pro-medium: 'AcuminProMedium';
+    --font-acumin-pro-medium-italic: 'AcuminProMediumItalic';
+    --font-acumin-pro-regular: 'AcuminProRegular';
+    --font-beatrice-regular: 'BeatriceRegular';
+    --font-moneta-bold: 'MonetaBold';
+}
+
+/* This is an example of how you'd reference the global variable in an example p tag: 
+p {
+    color: var(--primary-color-champagne)
+}
+*/
