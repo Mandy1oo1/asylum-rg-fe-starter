@@ -45,7 +45,6 @@ function TimeSeriesSingleOffice(props) {
     '% Admin Close / Dismissal',
     '% Denied',
   ];
-
   return (
     <div
       className="time-series-single-office-container"
@@ -57,19 +56,17 @@ function TimeSeriesSingleOffice(props) {
         minHeight: '100px',
       }}
     >
-      <p>
-        Showing: Time series data for the {office} USCIS Asylum Office
-      </p>
+      <p>Showing: Time series data for all USCIS Asylum Offices - ({office})</p>
       <Plot
         data={[
           {
-            x: plotlyGraphAxis['x'], // Fiscal years for x-axis
-            y: plotlyGraphAxis['y'], // Grant percentages for y-axis
+            x: plotlyGraphAxis['x'],
+            y: plotlyGraphAxis['y'],
             type: 'scatter',
             mode: 'lines+markers',
             yMax: 1,
             dy: 1,
-            dx: 1, // Easy scaling control for axes
+            dx: 1, // setting these explicitly so they are easy to change later
           },
         ]}
         layout={{
@@ -80,12 +77,12 @@ function TimeSeriesSingleOffice(props) {
             range: [0, 100],
             title: `Asylum Grant Rate %`,
             autotick: false,
-            dtick: 10, // Ticks every 10% on the y-axis
+            dtick: 10,
           },
           xaxis: {
             range: [
-              plotlyGraphAxis['x'][0], // Starting year
-              plotlyGraphAxis['x'][plotlyGraphAxis['x'].length - 1], // Last year
+              plotlyGraphAxis['x'][0],
+              plotlyGraphAxis['x'][plotlyGraphAxis['x'].length - 1],
             ],
             title: `Fiscal Year`,
           },
@@ -97,8 +94,8 @@ function TimeSeriesSingleOffice(props) {
       />
       <p>Table view</p>
       <Table
-        columns={columnsForTable} // Define table columns
-        rows={rowsForTable} // Data for the table
+        columns={columnsForTable}
+        rows={rowsForTable}
         tableWidth={'100%'}
         rowHeight={'50px'}
       />

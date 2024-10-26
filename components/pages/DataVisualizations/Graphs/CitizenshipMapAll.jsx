@@ -20,7 +20,6 @@ function CitizenshipMapAll(props) {
   });
   const [rowsForTable, setRowsForTable] = useState([]);
 
-  // Update the plot and table data when the `citizenshipMapAllData` changes
   useEffect(() => {
     if (citizenshipMapAllData['countryGrantRateObj'] !== undefined) {
       setPlotlyGraphAxis({
@@ -33,7 +32,6 @@ function CitizenshipMapAll(props) {
     } else {
       setPlotlyGraphAxis({ locationsAndText: [], z: [] });
     }
-
     if (citizenshipMapAllData.rowsForTable === undefined) {
       setRowsForTable([]);
     } else {
@@ -50,9 +48,8 @@ function CitizenshipMapAll(props) {
     'south america',
   ];
   const [geoScope, setGeoScope] = useState('world');
-  
-  // Handle scope change for map region selection
   const handleScopeChange = e => {
+    //update Plotly region based on dropdown selection
     const { value } = e.target;
     setGeoScope(value);
   };
@@ -118,11 +115,9 @@ function CitizenshipMapAll(props) {
       />
       <label htmlFor="regionSelect">Select another region below</label>
       <select name="regionSelect" onChange={handleScopeChange}>
-        {geoScopeArray.map((region, idx) => (
-          <option key={idx} value={region}>
-            {region.toUpperCase()}
-          </option>
-        ))}
+        {geoScopeArray.map(a => {
+          return <option value={a}>{a.toUpperCase()}</option>;
+        })}
       </select>
       <p>Table view</p>
       <Table

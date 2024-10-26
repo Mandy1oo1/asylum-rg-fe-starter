@@ -1,5 +1,5 @@
 import React from 'react';
-//Import links for graph images
+// ADD IMPORTS BACK FOR GRAPHS SECTION
 import GrantRatesByOfficeImg from '../../../styles/Images/bar-graph-no-text.png';
 import GrantRatesByNationalityImg from '../../../styles/Images/pie-chart-no-text.png';
 import GrantRatesOverTimeImg from '../../../styles/Images/line-graph-no-text.png';
@@ -7,6 +7,8 @@ import HrfPhoto from '../../../styles/Images/paper-stack.jpg';
 import '../../../styles/RenderLandingPage.less';
 import { Button } from 'antd';
 import { useHistory } from 'react-router-dom';
+// for the purposes of testing PageNav
+// import PageNav from '../../common/PageNav';
 
 function RenderLandingPage(props) {
   const scrollToTop = () => {
@@ -29,32 +31,47 @@ function RenderLandingPage(props) {
         </div>
       </div>
 
-       {/* Section displaying imported graphs from folder /style/Images */}     
-       <div className="graphs-section">
-   <div className="graph-container">
-     <img src={GrantRatesByOfficeImg} alt="Bar graph" className="graph-img" />
-     <h4>Search Grant Rates by Office</h4>
-   </div>
-   <div className="graph-container">
-     <img src={GrantRatesByNationalityImg} alt="Pie chart" className="graph-img pie-chart-img" />
-     <h4>Search Grant Rates by Nationality</h4>
-   </div>
-   <div className="graph-container">
-     <img src={GrantRatesOverTimeImg} alt="Line graph" className="graph-img" />
-     <h4>Search Grant Rates Over Time</h4>
-   </div>
-</div>
-
-
-
-  
-      <div className="view-more-data-btn-container">
+      {/* Graphs Section: Add code here for the graphs section for your first ticket */}
+      <div className="graphs-section">
+        <div className="grant-rates-by-office-graph-container">
+          <img
+            src={GrantRatesByOfficeImg}
+            alt="Grant Rates By Office"
+            className="gr-office-img"
+          />
+          <p>Search Grant Rates By Office</p>
+        </div>
+        <div className="grant-rates-by-nationality-container">
+          <img
+            src={GrantRatesByNationalityImg}
+            alt="Grant Rates By Nationality"
+            className="gr-nationality-img"
+          />
+          <p>Search Grant Rates By Nationality</p>
+        </div>
+        <div className="grant-rates-over-time-container">
+          <img
+            src={GrantRatesOverTimeImg}
+            alt="Grant Rates Over Time"
+            className="gr-overtime-img"
+          />
+          <p>Search Grant Rates Over Time</p>
+        </div>
+      </div>
+      <div className="view-more-and-download-data-btn-container">
         <Button
           type="default"
           style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
           onClick={() => history.push('/graphs')}
         >
           View the Data
+        </Button>
+
+        <Button
+          type="default"
+          style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+        >
+          Download the Data
         </Button>
       </div>
 
@@ -70,46 +87,53 @@ function RenderLandingPage(props) {
             through a Freedom of Information Act request. You can search for
             information on asylum grant rates by year, nationality, and asylum
             office, visualize the data with charts and heat maps, and download
-            the data set
+            the data set.
           </h3>
         </div>
       </div>
-
-    {/*Bottom Section containing paragraphs on insights from the data */}
       <div>
-  <div className="bottom-section">
-    <div className="section-title">Systemic Disparity Insights</div>
-    
-    <div className="stat-container">
-      <div className="statistic">
-        <div className="title">36%</div>
-        <div className="description">
-          By the end of the Trump administration, the average asylum office grant rate had fallen 36 percent from an average of 44 percent in the fiscal year 2016 to 28 percent in the fiscal year 2020.
+        {/* Bottom Section: Add code here for the graphs section for your first ticket */}
+        <div className="bottom-section">
+          <h1>Systemic Disparity Insights</h1>
+          <div class="data-container">
+            <div class="first-data-point-container">
+              <h2>36%</h2>
+              <h3>
+                "By the end of the Trump administration, the average asylum
+                office grant rate had fallen 36 percent from an average of 44
+                percent in fiscal year 2016 to 28 percent in fiscal year 2020."
+              </h3>
+            </div>
+            <div class="second-data-point-container">
+              <h2>5%</h2>
+              <h3>
+                The New York asylum office grant rate dropped to 5 percent in
+                fiscal year 2020.
+              </h3>
+            </div>
+            <div class="third-data-point-container">
+              <h2>6x Lower</h2>
+              <h3>
+                "Between fiscal year 2017 and 2020, the New York asylum office’s
+                average grant rate was six times lower than the San Francisco
+                asylum office."
+              </h3>
+            </div>
+          </div>
+          <div className="read-more-button">
+            <Button
+              type="default"
+              style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+            >
+              Read More
+            </Button>
+          </div>
+          <p onClick={() => scrollToTop()} className="back-to-top">
+            Back To Top ^
+          </p>
         </div>
       </div>
-      
-      <div className="statistic">
-        <div className="title">5%</div>
-        <div className="description">
-          The New York asylum office grant rate dropped to 5 percent in fiscal year 2020.
-        </div>
-      </div>
-      
-      <div className="statistic">
-        <div className="title">6x Lower</div>
-        <div className="description">
-          Between fiscal year 2017 and 2020, the New York asylum office's average grant rate was six times lower than the San Francisco asylum office.
-        </div>
-        </div>
     </div>
-
-        <p onClick={() => scrollToTop()} className="back-to-top">
-          Back To Top ^
-        </p>
-      </div>
-    </div>
-    </div>
-    
   );
 }
 export default RenderLandingPage;

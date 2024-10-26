@@ -26,9 +26,17 @@ function GraphsContainer() {
     'New Orleans, LA',
   ];
   function handle_office_select(value) {
-    const selectedOffice = value === 'All Offices' ? 'all' : value;
-    history.push(`/graphs/${selectedOffice}/${view === 'office-heat-map' ? 'time-series' : view}`);
-  
+    // if (view === 'office-heat-map') {
+    //   set_view('time-series');
+    // }
+    // if (value === 'All') {
+    //   history.push(
+    //     `/graphs/all/${view === 'office-heat-map' ? 'time-series' : view}`
+    //   );
+    // }
+    // history.push(
+    //   `/graphs/${value}/${view === 'office-heat-map' ? 'time-series' : view}`
+    // );
 
     switch (value) {
       case 'All Offices':
@@ -136,17 +144,24 @@ function GraphsContainer() {
           }}
         >
           <Select
-  style={{ marginRight: '115px' }}
-  placeholder="Select an Asylum Office"
-  onSelect={value => handle_office_select(value)}
->
-  {offices.map((office, idx) => (
-    <Option key={idx} value={office === 'All Offices' ? 'all' : office}>
-      {office}
-    </Option>
-  ))}
-</Select>
-
+            style={{
+              marginRight: '115px',
+            }}
+            placeholder="Select an Asylum Office"
+            onSelect={value => handle_office_select(value)}
+          >
+            {offices.map((office, idx) =>
+              office === 'All' ? (
+                <Option key={idx} value={'all'}>
+                  {office}
+                </Option>
+              ) : (
+                <Option key={idx} value={office}>
+                  {office}
+                </Option>
+              )
+            )}
+          </Select>
         </div>
         <Switch>
           <Route

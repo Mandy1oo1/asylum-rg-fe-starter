@@ -6,7 +6,7 @@ import { colors } from '../../../../styles/data_vis_colors';
 
 const { background_color } = colors;
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     timeSeriesAllData: state.vizReducer.timeSeriesAllData,
   };
@@ -16,8 +16,6 @@ function TimeSeriesAll(props) {
   const { timeSeriesAllData } = props;
   const currentYear = new Date().getFullYear();
   const [rowsForAllDisplay, setRowsForAllDisplay] = useState([]);
-
-  // Table columns definition
   const columnsForAllDisplay = [
     'Fiscal Year',
     'Total Cases',
@@ -25,20 +23,13 @@ function TimeSeriesAll(props) {
     '% Admin Close / Dismissal',
     '% Denied',
   ];
-
-  // Update table rows when timeSeriesAllData changes
   useEffect(() => {
-    // Safely access rowsForAllDisplay
-    if (!timeSeriesAllData || !timeSeriesAllData.xYears || !timeSeriesAllData.yTotalPercentGranteds) {
-      return <div>Loading data...</div>; // or handle as appropriate
-  } else {
-      setRowsForAllDisplay([]); // Set to empty array if undefined
+    if (timeSeriesAllData.rowsForAllDisplay === undefined) {
+      setRowsForAllDisplay([]);
+    } else {
+      setRowsForAllDisplay(timeSeriesAllData.rowsForAllDisplay);
     }
   }, [timeSeriesAllData]);
-
-  // Debugging log to check the structure of timeSeriesAllData
-  console.log('TimeSeriesAllData:', timeSeriesAllData);
-
   return (
     <div
       className="time-series-all-container"
@@ -54,12 +45,12 @@ function TimeSeriesAll(props) {
       <Plot
         data={[
           {
-            x: timeSeriesAllData['xYears'] || [], // Fallback to empty array if undefined
-            y: timeSeriesAllData['yTotalPercentGranteds'] || [], // Fallback to empty array if undefined
+            x: timeSeriesAllData['xYears'],
+            y: timeSeriesAllData['yTotalPercentGranteds'],
             type: 'scatter',
             mode: 'lines+markers',
             dy: 1,
-            dx: 1,
+            dx: 1, // setting these explicitly so they are easy to change later
           },
         ]}
         layout={{
@@ -68,14 +59,14 @@ function TimeSeriesAll(props) {
           width: 700,
           yaxis: {
             range: [0, 100],
-            title: 'Asylum Grant Rate %',
+            title: `Asylum Grant Rate %`,
             autotick: false,
             dtick: 10,
           },
           xaxis: {
             range: [
-              (timeSeriesAllData['xYears'] && timeSeriesAllData['xYears'][0]) || 2015,
-              (timeSeriesAllData['xYears'] && timeSeriesAllData['xYears'][timeSeriesAllData['xYears'].length - 1]) || currentYear,
+              timeSeriesAllData[0] || 2015,
+              timeSeriesAllData[timeSeriesAllData.length - 1] || currentYear,
             ],
             title: 'Fiscal Year',
           },
