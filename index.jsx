@@ -1,25 +1,76 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import 'antd/dist/antd.less';
+import { NotFoundPage } from './components/pages/NotFound';
+import { LandingPage } from './components/pages/Landing';
+
+import { FooterContent, SubFooter } from './components/Layout/Footer';
+import { HeaderContent } from './components/Layout/Header';
+
+import { Layout } from 'antd';
+import GraphsContainer from './components/pages/DataVisualizations/GraphsContainer';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import reducer from './state/reducers';
-import Auth0ProviderWithHistory from './auth0-provider-with-history';
-import App from './components/common/App';
-//import { Auth0Provider } from '@auth0/auth0-react';
+import { colors } from './styles/data_vis_colors';
+import { Auth0Provider } from '@auth0/auth0-react';
+import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
+import { ProfilePage } from './components/pages/profile';
+
+const { primary_accent_color } = colors;
 
 const store = configureStore({ reducer: reducer });
-
 ReactDOM.render(
   <Router>
-    <Provider store={store}>
-      <React.StrictMode>
-        <Auth0ProviderWithHistory>
+    <Auth0ProviderWithHistory>
+      <Provider store={store}>
+        <React.StrictMode>
           <App />
-        </Auth0ProviderWithHistory>
-        ,
-      </React.StrictMode>
-    </Provider>
+        </React.StrictMode>
+      </Provider>
+    </Auth0ProviderWithHistory>
   </Router>,
   document.getElementById('root')
 );
+
+export function App() {
+  const { Footer, Header } = Layout;
+  return (
+    <Layout>
+      <Header
+        style={{
+          height: '12vh',
+          display: 'flex',
+          alignItems: 'center',
+          backgroundColor: primary_accent_color,
+        }}
+      >
+        <HeaderContent />
+      </Header>
+      <Switch>
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/graphs" component={GraphsContainer} />
+        <Route path="/profile" component={ProfilePage} />
+        <Route component={NotFoundPage} />
+      </Switch>
+      <Footer
+        style={{
+          backgroundColor: primary_accent_color,
+          color: '#E2F0F7',
+        }}
+      >
+        <FooterContent />
+      </Footer>
+      <Footer
+        style={{
+          backgroundColor: primary_accent_color,
+          padding: 0,
+        }}
+      >
+        <SubFooter />
+      </Footer>
+    </Layout>
+  );
+}
